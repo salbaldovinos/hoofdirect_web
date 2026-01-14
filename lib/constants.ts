@@ -4,7 +4,6 @@
 export const SITE_CONFIG = {
   name: 'Hoof Direct',
   domain: 'hoofdirect.com',
-  email: 'support@hoofdirect.com',
   tagline: 'Route-Optimized Scheduling for Professional Farriers',
 };
 
@@ -184,7 +183,7 @@ export const FAQ = {
     },
     {
       question: 'What if I need help?',
-      answer: 'Email us at support@hoofdirect.com. Founding members get priority support with faster response times. We\'re real people who care about making your business easier to run.',
+      answer: 'Founding members will get priority support with faster response times once the app launches. We\'re real people who care about making your business easier to run.',
     },
   ],
 };
@@ -202,7 +201,6 @@ export const FOOTER = {
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms of Service', href: '/terms' },
   ],
-  contact: 'support@hoofdirect.com',
 };
 
 export const PRICING = {

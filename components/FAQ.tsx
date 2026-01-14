@@ -85,13 +85,7 @@ export function FAQSection() {
         {/* Additional Help */}
         <div className="mt-10 text-center">
           <p className="text-text-secondary">
-            Have another question?{' '}
-            <a
-              href="mailto:support@hoofdirect.com"
-              className="text-primary font-medium hover:underline"
-            >
-              Email us
-            </a>
+            Support will be available once the app launches.
           </p>
         </div>
       </div>

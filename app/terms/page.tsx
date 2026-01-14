@@ -148,14 +148,8 @@ export default function TermsPage() {
                   10. Contact
                 </h2>
                 <p>
-                  If you have questions about these terms, please contact us at{' '}
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}`}
-                    className="text-primary hover:underline"
-                  >
-                    {SITE_CONFIG.email}
-                  </a>
-                  .
+                  If you have questions about these terms, support will be
+                  available once the app launches.
                 </p>
               </section>
             </div>

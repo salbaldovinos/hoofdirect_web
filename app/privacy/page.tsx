@@ -113,14 +113,7 @@ export default function PrivacyPage() {
                 </h2>
                 <p>
                   If you have questions about this privacy policy or your data,
-                  please contact us at{' '}
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}`}
-                    className="text-primary hover:underline"
-                  >
-                    {SITE_CONFIG.email}
-                  </a>
-                  .
+                  support will be available once the app launches.
                 </p>
               </section>
 

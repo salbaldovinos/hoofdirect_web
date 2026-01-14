@@ -31,14 +31,6 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href={`mailto:${FOOTER.contact}`}
-                  className="text-sm text-white/70 hover:text-white transition-colors"
-                >
-                  {FOOTER.contact}
-                </a>
-              </li>
             </ul>
           </nav>
         </div>
