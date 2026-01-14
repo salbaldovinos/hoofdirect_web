@@ -103,7 +103,7 @@ export function WaitlistForm({
               disabled={status === 'loading' || status === 'success'}
               className={cn(
                 'w-full px-4 py-3 rounded-lg border-2 transition-all duration-200',
-                'text-text-primary placeholder:text-text-muted',
+                'bg-white text-text-primary placeholder:text-text-muted',
                 'focus:outline-none focus:ring-0',
                 isHero ? 'text-base md:text-lg py-4' : 'text-base',
                 status === 'error'
