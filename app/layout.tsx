@@ -19,35 +19,52 @@ const dmSerif = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
-  title: SEO.title,
+  metadataBase: new URL(`https://${SITE_CONFIG.domain}`),
+  title: {
+    default: SEO.title,
+    template: `%s | ${SITE_CONFIG.name}`,
+  },
   description: SEO.description,
   keywords: SEO.keywords,
-  metadataBase: new URL(`https://${SITE_CONFIG.domain}`),
+  authors: [{ name: SITE_CONFIG.name }],
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     title: SEO.title,
     description: SEO.description,
     url: `https://${SITE_CONFIG.domain}`,
     siteName: SITE_CONFIG.name,
+    locale: 'en_US',
     type: 'website',
-    images: [
-      {
-        url: SEO.ogImage,
-        width: 1200,
-        height: 630,
-        alt: SITE_CONFIG.tagline,
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SEO.title,
     description: SEO.description,
-    images: [SEO.ogImage],
+    creator: '@hoofdirect',
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
