@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { DM_Sans, DM_Serif_Display } from 'next/font/google';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { SEO, SITE_CONFIG } from '@/lib/constants';
 
@@ -112,6 +113,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
