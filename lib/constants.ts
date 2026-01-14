@@ -274,15 +274,7 @@ export const PRICING = {
   annualDiscount: 20,
 };
 
-export const FORM_MESSAGES = {
-  success: "You're on the list! We'll email you when Hoof Direct launches.",
-  error: 'Something went wrong. Please try again or email us directly.',
-  alreadySubscribed: "Looks like you're already on the list. We'll be in touch soon!",
-  invalidEmail: 'Please enter a valid email address.',
-};
-
 export const LINKS = {
-  mailchimpForm: process.env.NEXT_PUBLIC_MAILCHIMP_URL || '#',
   playStore: '#',
   twitter: '#',
   facebook: '#',

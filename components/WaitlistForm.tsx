@@ -2,7 +2,6 @@
 
 import { useState, FormEvent } from 'react';
 import { cn, isValidEmail } from '@/lib/utils';
-import { FORM_MESSAGES, LINKS } from '@/lib/constants';
 import { CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 interface WaitlistFormProps {
@@ -11,9 +10,17 @@ interface WaitlistFormProps {
   buttonText?: string;
   className?: string;
   variant?: 'default' | 'compact' | 'hero';
+  source?: string;
 }
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
+
+const MESSAGES = {
+  success: "You're on the list! We'll email you when Hoof Direct launches.",
+  error: 'Something went wrong. Please try again.',
+  alreadySubscribed: "You're already on the waitlist. We'll be in touch soon!",
+  invalidEmail: 'Please enter a valid email address.',
+};
 
 export function WaitlistForm({
   id,
@@ -21,6 +28,7 @@ export function WaitlistForm({
   buttonText = 'Get Early Access',
   className,
   variant = 'default',
+  source = 'website',
 }: WaitlistFormProps) {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<FormStatus>('idle');
@@ -31,44 +39,39 @@ export function WaitlistForm({
 
     if (!isValidEmail(email)) {
       setStatus('error');
-      setMessage(FORM_MESSAGES.invalidEmail);
+      setMessage(MESSAGES.invalidEmail);
       return;
     }
 
     setStatus('loading');
 
-    // For development, simulate API call
-    // In production, this would post to Mailchimp
-    if (LINKS.mailchimpForm === '#') {
-      // Development mode - simulate success
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log('Email submitted (dev mode):', email);
-      setStatus('success');
-      setMessage(FORM_MESSAGES.success);
-      setEmail('');
-      return;
-    }
-
-    // Production mode - submit to Mailchimp
     try {
-      const formData = new FormData();
-      formData.append('EMAIL', email);
-      formData.append('tags', 'waitlist,founding-member');
-
-      const response = await fetch(LINKS.mailchimpForm, {
+      const response = await fetch('/api/waitlist', {
         method: 'POST',
-        body: formData,
-        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, source }),
       });
 
-      // Mailchimp returns opaque response with no-cors
-      // Assume success if no error thrown
-      setStatus('success');
-      setMessage(FORM_MESSAGES.success);
-      setEmail('');
+      const data = await response.json();
+
+      if (response.status === 201) {
+        setStatus('success');
+        setMessage(MESSAGES.success);
+        setEmail('');
+      } else if (response.status === 409) {
+        // Already subscribed - treat as success
+        setStatus('success');
+        setMessage(MESSAGES.alreadySubscribed);
+        setEmail('');
+      } else {
+        setStatus('error');
+        setMessage(data.error || MESSAGES.error);
+      }
     } catch {
       setStatus('error');
-      setMessage(FORM_MESSAGES.error);
+      setMessage(MESSAGES.error);
     }
   };
 
